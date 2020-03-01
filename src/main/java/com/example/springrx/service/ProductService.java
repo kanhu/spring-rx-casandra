@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.springrx.model.Product;
 import com.example.springrx.model.ProductIdentity;
 import com.example.springrx.repository.ProductRepositry;
 
-
+@Service
 public class ProductService {
 	@Autowired
 	ProductRepositry productRepositry;

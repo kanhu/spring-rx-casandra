@@ -46,4 +46,7 @@ public class CassandraConfiguration extends AbstractReactiveCassandraConfigurati
 	public String[] getEntityBasePackages() {
 		return new String[] { basePackages };
 	}
+	
+	@Override
+	protected boolean getMetricsEnabled() { return false; }
 }
