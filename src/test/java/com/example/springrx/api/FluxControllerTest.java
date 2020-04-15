@@ -1,5 +1,7 @@
 package com.example.springrx.api;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 @ExtendWith(SpringExtension.class)
+// similar to @WebMvcTest, we need to use @WebFluxTest and specify the controller class
 @WebFluxTest(controllers= {FluxAndMonoAPI.class})
 public class FluxControllerTest {
 
@@ -50,6 +53,17 @@ public class FluxControllerTest {
 		.verify();
 		
 	
+	}
+	
+	@Test
+	public void getAutherTest() {
+		String expctedValue="Krushna";
+		webTestClient.get().uri("/v1/getAuther")
+		.accept(MediaType.APPLICATION_JSON)
+		.exchange()
+		.expectStatus().isOk()
+		.expectBody(String.class)
+		.consumeWith((response) ->  assertEquals(expctedValue, response.getResponseBody()));
 	}
 	
 }
